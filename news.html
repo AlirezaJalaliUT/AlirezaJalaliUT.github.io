@@ -1,0 +1,10 @@
+---
+layout: page
+title: News & Updates
+description: Laboratory announcements, research milestones, and community news.
+eyebrow: 07 / LAB JOURNAL
+number: "07"
+permalink: /news/
+---
+{% assign newsitems = site.news | where: 'published', true | sort: 'date' | reverse %}
+{% if newsitems.size > 0 %}<div class="timeline-list">{% for item in newsitems %}<a class="timeline-item" href="{{ item.url | relative_url }}"><time>{{ item.date | date: '%B %d, %Y' }}</time><div><h2>{{ item.title | escape }}</h2><p>{{ item.summary | escape }}</p></div><span>↗</span></a>{% endfor %}</div>{% else %}{% include empty.html title="News will appear here" message="Confirmed research news, conferences, and laboratory achievements will be added through the editor." %}{% endif %}

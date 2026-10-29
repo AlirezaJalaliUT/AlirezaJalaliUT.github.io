@@ -1,0 +1,82 @@
+---
+layout: default
+title: Home
+permalink: /
+---
+{% assign profile = site.data.site %}
+<section class="hero-section">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="eyebrow-dot"></span>{{ profile.hero_label | escape }}</div>
+      <h1>{{ profile.hero_title | escape }}</h1>
+      <p class="hero-summary">{{ profile.hero_description | escape }}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="{{ '/research/' | relative_url }}">Explore our research <span aria-hidden="true">↗</span></a>
+        <a class="btn btn-outline" href="{{ '/people/' | relative_url }}">Meet the group <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="hero-professor">
+        <span class="hero-professor-symbol">AJ</span>
+        <div><strong>{{ profile.professor_name | escape }}</strong><small>{{ profile.professor_title | escape }} · {{ profile.university | escape }}</small></div>
+      </div>
+    </div>
+    <div class="hero-visual" aria-label="Water purification research illustration and professor image">
+      <div class="visual-background"></div>
+      {% if profile.lab_photo and profile.lab_photo != '' %}
+        <img class="visual-science" src="{{ profile.lab_photo | relative_url }}" alt="Research laboratory" />
+      {% else %}
+        <img class="visual-science" src="{{ '/assets/img/water-science.svg' | relative_url }}" alt="Illustration of water purification, fluid flow and ultraviolet photoreactor research" />
+      {% endif %}
+      <div class="photo-panel">
+        {% if profile.professor_photo and profile.professor_photo != '' %}
+          <img src="{{ profile.professor_photo | relative_url }}" alt="Portrait of {{ profile.professor_name | escape }}" />
+        {% else %}
+          <img src="{{ '/assets/img/portrait-placeholder.svg' | relative_url }}" alt="Portrait placeholder awaiting an approved photograph" />
+        {% endif %}
+        <div class="photo-caption"><span class="micro-heading">PRINCIPAL INVESTIGATOR</span><strong>{{ profile.professor_name | escape }}</strong></div>
+      </div>
+      <div class="visual-caption"><span class="pulse-dot"></span> WATER · ENERGY · ENGINEERING</div>
+    </div>
+  </div>
+  <div class="container"><div class="hero-bottom"><span>RESEARCH-DRIVEN · COLLABORATIVE · INTERDISCIPLINARY</span><span class="scroll-prompt">DISCOVER OUR WORK <span aria-hidden="true">↓</span></span></div></div>
+</section>
+<section class="focus-strip" aria-label="Research focus topics"><div class="container focus-strip-inner">
+  <span class="focus-label">OUR FOCUS</span>
+  <span>Water disinfection</span><span>Desalination</span><span>Fluid dynamics</span><span>Optimization</span>
+</div></section>
+<section class="section section-large" id="research"><div class="container">
+  <div class="section-heading"><div><span class="kicker">01 / RESEARCH</span><h2>{{ profile.homepage_intro_title | escape }}</h2><p class="section-intro">{{ profile.homepage_intro_text | escape }}</p></div><a class="text-link" href="{{ '/research/' | relative_url }}">All research areas <span aria-hidden="true">↗</span></a></div>
+  {% assign areas = site.areas | where: 'published', true | sort: 'order' %}
+  <div class="research-grid">{% for item in areas limit:3 %}
+    <a class="research-card" href="{{ item.url | relative_url }}">
+      <div class="research-top"><span class="research-number">0{{ forloop.index }}</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+      <div class="research-icon">{% case item.icon %}{% when 'sun' %}☼{% when 'waves' %}≋{% when 'flow' %}◎{% else %}◈{% endcase %}</div>
+      <h3>{{ item.title | escape }}</h3><p>{{ item.summary | escape }}</p><span class="card-bottom">Explore research <span aria-hidden="true">→</span></span>
+    </a>
+  {% endfor %}</div>
+</div></section>
+<section class="section section-tinted"><div class="container split-feature">
+ <div class="feature-visual"><div class="feature-image"><img src="{{ '/assets/img/water-abstract.svg' | relative_url }}" alt="Abstract blue water and molecular pathways" loading="lazy"></div><span class="figure-tag">ENGINEERING / IMPACT</span></div>
+ <div class="feature-copy"><span class="kicker">02 / OUR APPROACH</span><h2>Where fundamental science meets practical challenges.</h2><p>We connect the study of flow, radiation, and transport with advanced numerical and optimization techniques to explore better water treatment technologies.</p><a class="text-link" href="{{ '/projects/' | relative_url }}">Discover research projects <span aria-hidden="true">↗</span></a></div>
+</div></section>
+<section class="section section-large"><div class="container">
+ <div class="section-heading"><div><span class="kicker">03 / SCIENTIFIC OUTPUT</span><h2>Selected publications<span class="title-period">.</span></h2><p class="section-intro">A selection of peer-reviewed research. Explore the full list or visit the professor's scholarly profile.</p></div><a class="text-link" href="{{ '/publications/' | relative_url }}">All publications <span aria-hidden="true">↗</span></a></div>
+ {% assign papers = site.publications | where: 'published', true | where: 'featured', true | sort: 'year' | reverse %}
+ <div class="pub-list">{% for item in papers limit:3 %}{% include publication-row.html item=item %}{% endfor %}</div>
+ <div class="below-list"><a class="btn btn-outline" href="{{ profile.scholar_url }}" target="_blank" rel="noopener noreferrer">View Google Scholar <span aria-hidden="true">↗</span></a></div>
+</div></section>
+<section class="section section-people"><div class="container home-columns">
+ <div><span class="kicker">04 / OUR PEOPLE</span><h2>People behind<br>the research.</h2><p>Our lab brings together researchers and students working across water science, engineering, and computational methods.</p><a class="text-link" href="{{ '/people/' | relative_url }}">Explore the team <span aria-hidden="true">↗</span></a></div>
+ <div class="people-feature">
+ {% assign members = site.people | where: 'published', true | where: 'alumni', false %}
+ {% if members.size > 0 %}<div class="mini-people-grid">{% for member in members limit:3 %}<a href="{{ member.url | relative_url }}" class="mini-person"><div class="mini-avatar">{% if member.photo and member.photo != '' %}<img src="{{ member.photo | relative_url }}" alt="" loading="lazy">{% else %}{{ member.title | slice: 0, 1 | upcase }}{% endif %}</div><strong>{{ member.title | escape }}</strong><small>{{ member.role | escape }}</small></a>{% endfor %}</div>
+ {% else %}<div class="empty-inline"><span class="empty-symbol">✦</span><strong>Meet our research community</strong><p>Team profiles will appear here once approved and added through the content editor.</p></div>{% endif %}
+ </div>
+</div></section>
+<section class="section section-large"><div class="container news-position-grid">
+ <div class="news-panel"><div class="panel-heading"><div><span class="kicker">05 / UPDATES</span><h2>Latest news.</h2></div><a class="text-link" href="{{ '/news/' | relative_url }}">All news ↗</a></div>
+ {% assign newitems = site.news | where: 'published', true | sort: 'date' | reverse %}
+ {% if newitems.size > 0 %}{% for item in newitems limit:3 %}<a class="news-line" href="{{ item.url | relative_url }}"><time>{{ item.date | date: '%b %d, %Y' }}</time><strong>{{ item.title | escape }}</strong><span aria-hidden="true">↗</span></a>{% endfor %}
+ {% else %}<p class="quiet-empty">Lab announcements and recent highlights will be posted here.</p>{% endif %}
+ </div>
+ <div class="opportunity-panel"><span class="kicker kicker-light">JOIN THE LAB</span><div class="orb orb-one"></div><div class="orb orb-two"></div><h2>Curious minds.<br>Meaningful work.</h2><p>Information about available research opportunities and application instructions will be published here when confirmed.</p><a class="btn btn-light" href="{{ '/positions/' | relative_url }}">View opportunities <span aria-hidden="true">↗</span></a></div>
+</div></section>

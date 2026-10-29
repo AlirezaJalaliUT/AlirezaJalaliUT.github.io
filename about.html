@@ -1,0 +1,9 @@
+---
+layout: page
+title: About the Professor
+description: Academic background and research interests of the laboratory's principal investigator.
+eyebrow: 08 / PRINCIPAL INVESTIGATOR
+number: "08"
+permalink: /about/
+---
+<div class="about-layout"><div><span class="kicker">ACADEMIC PROFILE</span><h2>{{ site.data.site.professor_name | escape }}</h2><p class="about-role">{{ site.data.site.professor_title | escape }}<br>{{ site.data.site.department | escape }}<br>{{ site.data.site.university | escape }}</p><div class="about-links"><a href="{{ site.data.site.scholar_url }}" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a>{% if site.data.site.orcid_url != '' %}<a href="{{ site.data.site.orcid_url }}" target="_blank" rel="noopener noreferrer">ORCID ↗</a>{% endif %}{% if site.data.site.cv_url != '' %}<a href="{{ site.data.site.cv_url | relative_url }}">Download CV ↗</a>{% endif %}</div></div><div class="prose"><h3>{{ site.data.about.heading | escape }}</h3><p class="lead">{{ site.data.about.lead | escape }}</p>{{ site.data.about.body | markdownify }}{% if site.data.about.education != '' %}<h3>Education & Appointments</h3>{{ site.data.about.education | markdownify }}{% endif %}</div></div>

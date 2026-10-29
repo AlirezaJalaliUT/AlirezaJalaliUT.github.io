@@ -1,0 +1,11 @@
+---
+layout: page
+title: Open Positions
+description: Opportunities for students, researchers, and collaborators to join the laboratory.
+eyebrow: 06 / WORK WITH US
+number: "06"
+permalink: /positions/
+---
+{% assign positions = site.positions | where: 'published', true | sort: 'date' | reverse %}
+{% if positions.size > 0 %}<div class="positions-list">{% for item in positions %}<a class="position-card" href="{{ item.url | relative_url }}"><div><span class="status-pill {% if item.status == 'Open' %}status-open{% endif %}">{{ item.status | default: 'Details' | escape }}</span><h2>{{ item.title | escape }}</h2><p>{{ item.summary | escape }}</p>{% if item.deadline %}<small>Deadline: {{ item.deadline | date: '%B %d, %Y' }}</small>{% endif %}</div><span class="position-arrow">↗</span></a>{% endfor %}</div>{% else %}{% include empty.html title="No confirmed openings are listed" message="When a position is announced, details, eligibility, deadlines, and application instructions will appear here. An empty page does not indicate whether unsolicited inquiries are welcome." %}{% endif %}
+<div class="callout-simple"><h3>Research collaboration</h3><p>For general academic inquiries, please use the laboratory's official contact address. Openings are announced only when confirmed.</p><a class="text-link" href="{{ '/contact/' | relative_url }}">Get in touch ↗</a></div>

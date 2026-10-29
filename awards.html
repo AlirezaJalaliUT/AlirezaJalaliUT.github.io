@@ -1,0 +1,10 @@
+---
+layout: page
+title: Awards & Honors
+description: Academic and research recognition.
+eyebrow: 10 / RECOGNITION
+number: "10"
+permalink: /awards/
+---
+{% assign awards = site.awards | where: 'published', true | sort: 'year' | reverse %}
+{% if awards.size > 0 %}<div class="timeline-list">{% for item in awards %}<a class="timeline-item" href="{{ item.url | relative_url }}"><time>{{ item.year }}</time><div><h2>{{ item.title | escape }}</h2><p>{{ item.summary | escape }}</p></div><span>↗</span></a>{% endfor %}</div>{% else %}{% include empty.html title="Awards will be listed here" message="Verified awards and honors can be published after approval from the professor." %}{% endif %}

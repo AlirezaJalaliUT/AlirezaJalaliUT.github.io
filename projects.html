@@ -1,0 +1,10 @@
+---
+layout: page
+title: Research Projects
+description: A home for the laboratory's research initiatives, collaborations, and ongoing investigations.
+eyebrow: 02 / OUR WORK
+number: "02"
+permalink: /projects/
+---
+{% assign projects = site.projects | where: 'published', true | sort: 'order' %}
+{% if projects.size > 0 %}<div class="article-cards">{% for item in projects %}<a class="article-card" href="{{ item.url | relative_url }}"><div class="article-art">{% if item.image and item.image != '' %}<img src="{{ item.image | relative_url }}" alt="" loading="lazy">{% else %}<span aria-hidden="true">◈</span>{% endif %}</div><span class="micro-heading">{{ item.status | default: 'RESEARCH PROJECT' | upcase | escape }}</span><h2>{{ item.title | escape }}</h2><p>{{ item.summary | escape }}</p><span class="card-bottom">View project ↗</span></a>{% endfor %}</div>{% else %}{% include empty.html title="Project profiles will appear here" message="Research project pages will be published when their details are confirmed by the laboratory." %}{% endif %}

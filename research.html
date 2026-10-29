@@ -1,0 +1,11 @@
+---
+layout: page
+title: Research Areas
+description: Explore the scientific directions that shape our work in water treatment, desalination, and fluid systems.
+eyebrow: 01 / DISCOVER OUR SCIENCE
+number: "01"
+permalink: /research/
+---
+{% assign areas = site.areas | where: 'published', true | sort: 'order' %}
+<div class="content-grid">{% for item in areas %}<a class="content-card" href="{{ item.url | relative_url }}"><div class="content-number">0{{ forloop.index }}</div><span class="card-arrow">↗</span><h2>{{ item.title | escape }}</h2><p>{{ item.summary | escape }}</p><span class="content-card-footer">Explore this area →</span></a>{% endfor %}</div>
+{% if areas.size == 0 %}{% include empty.html title="Research areas coming soon" %}{% endif %}

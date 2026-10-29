@@ -1,0 +1,10 @@
+---
+layout: page
+title: Teaching
+description: Courses, teaching materials, and educational activities.
+eyebrow: 09 / EDUCATION
+number: "09"
+permalink: /teaching/
+---
+{% assign courses = site.teaching | where: 'published', true | sort: 'order' %}
+{% if courses.size > 0 %}<div class="content-grid">{% for item in courses %}<a class="content-card" href="{{ item.url | relative_url }}"><span class="micro-heading">{{ item.semester | default: 'COURSE' | escape }}</span><h2>{{ item.title | escape }}</h2><p>{{ item.summary | escape }}</p><span class="content-card-footer">Course details ↗</span></a>{% endfor %}</div>{% else %}{% include empty.html title="Teaching information coming soon" message="Course and teaching details will be listed here once confirmed." %}{% endif %}

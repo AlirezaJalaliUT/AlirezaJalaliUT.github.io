@@ -1,0 +1,420 @@
+media:
+  input: assets/uploads
+  output: /assets/uploads
+  rename: safe
+content:
+- name: setup
+  label: Website & Professor
+  type: group
+  items:
+  - name: site
+    label: Site Settings & Contact
+    type: file
+    path: _data/site.yml
+    format: yaml
+    operations:
+      delete: false
+    fields:
+    - name: lab_name
+      label: Laboratory Display Name
+      type: string
+    - name: lab_full_name
+      label: Full Laboratory Name
+      type: string
+    - name: professor_name
+      label: Professor Name
+      type: string
+    - name: professor_title
+      label: Academic Title
+      type: string
+    - name: department
+      label: Department
+      type: string
+    - name: college
+      label: College
+      type: string
+    - name: university
+      label: University
+      type: string
+    - name: city
+      label: City
+      type: string
+    - name: email
+      label: Email
+      type: string
+    - name: scholar_url
+      label: Google Scholar URL
+      type: string
+    - name: orcid_url
+      label: ORCID URL
+      type: string
+    - name: institution_url
+      label: University Website URL
+      type: string
+    - name: cv_url
+      label: Upload CV (PDF)
+      type: file
+    - name: professor_photo
+      label: Professor Portrait
+      type: image
+    - name: lab_photo
+      label: Hero Laboratory Image (optional)
+      type: image
+    - name: hero_label
+      label: Hero Eyebrow Text
+      type: string
+    - name: hero_title
+      label: Hero Main Heading
+      type: string
+    - name: hero_description
+      label: Hero Description
+      type: text
+    - name: homepage_intro_title
+      label: Research Section Heading
+      type: string
+    - name: homepage_intro_text
+      label: Research Section Description
+      type: text
+    - name: contact_note
+      label: Contact Page Note
+      type: text
+    - name: footer_note
+      label: Footer Description
+      type: text
+  - name: about
+    label: Professor Biography
+    type: file
+    path: _data/about.yml
+    format: yaml
+    operations:
+      delete: false
+    fields:
+    - name: heading
+      label: Heading
+      type: string
+    - name: lead
+      label: Short Biography
+      type: text
+    - name: body
+      label: Full Biography
+      type: rich-text
+    - name: education
+      label: Education and Appointments (optional)
+      type: rich-text
+    - name: research_statement
+      label: Research Statement
+      type: text
+- name: research_group
+  label: Research & Publications
+  type: group
+  items:
+  - name: areas
+    label: Research Areas
+    type: collection
+    path: _areas
+    format: yaml-frontmatter
+    filename: '{primary}.md'
+    view:
+      primary: title
+      fields:
+      - title
+      - published
+    fields:
+    - name: title
+      label: Title
+      type: string
+      required: true
+    - &id001
+      name: summary
+      label: Short Summary
+      type: text
+    - name: icon
+      label: Icon
+      type: select
+      options:
+        values:
+        - sun
+        - waves
+        - flow
+        - spark
+    - &id002
+      name: order
+      label: Display Order
+      type: number
+      default: 10
+    - &id003
+      name: published
+      label: Published on Website
+      type: boolean
+      default: false
+      description: Turn on only after content has been verified and approved.
+    - &id004
+      name: body
+      label: Detailed Content
+      type: rich-text
+  - name: projects
+    label: Research Projects
+    type: collection
+    path: _projects
+    format: yaml-frontmatter
+    filename: '{primary}.md'
+    view:
+      primary: title
+      fields:
+      - title
+      - published
+    fields:
+    - name: title
+      label: Title
+      type: string
+      required: true
+    - *id001
+    - name: status
+      label: Project Status
+      type: select
+      options:
+        values:
+        - Ongoing
+        - Completed
+        - Planned
+    - &id005
+      name: image
+      label: Cover Image (optional)
+      type: image
+    - *id002
+    - *id003
+    - *id004
+  - name: publications
+    label: Publications
+    type: collection
+    path: _publications
+    format: yaml-frontmatter
+    filename: '{primary}.md'
+    view:
+      primary: title
+      fields:
+      - title
+      - year
+      - published
+    fields:
+    - name: title
+      label: Title
+      type: string
+      required: true
+    - name: authors
+      label: Authors
+      type: text
+    - name: venue
+      label: Journal or Conference
+      type: string
+    - name: year
+      label: Publication Year
+      type: number
+    - name: doi
+      label: DOI (without doi.org/)
+      type: string
+    - name: link
+      label: Additional External Link
+      type: string
+    - name: category
+      label: Publication Type
+      type: select
+      options:
+        values:
+        - Journal article
+        - Conference paper
+        - Book chapter
+        - Preprint
+        - Other
+    - name: featured
+      label: Feature on Homepage
+      type: boolean
+      default: false
+    - *id003
+    - *id004
+- name: people_group
+  label: People & Opportunities
+  type: group
+  items:
+  - name: people
+    label: Team Members & Alumni
+    type: collection
+    path: _people
+    format: yaml-frontmatter
+    filename: '{primary}.md'
+    view:
+      primary: title
+      fields:
+      - title
+      - role
+      - alumni
+      - published
+    fields:
+    - name: title
+      label: Full Name
+      type: string
+      required: true
+    - name: role
+      label: Role / Degree
+      type: string
+    - name: photo
+      label: Approved Portrait
+      type: image
+    - *id001
+    - name: email
+      label: Email
+      type: string
+    - name: link
+      label: Website / Scholar URL
+      type: string
+    - name: alumni
+      label: Former Member / Alumni
+      type: boolean
+      default: false
+    - *id002
+    - *id003
+    - *id004
+  - name: positions
+    label: Open Positions
+    type: collection
+    path: _positions
+    format: yaml-frontmatter
+    filename: '{primary}.md'
+    view:
+      primary: title
+      fields:
+      - title
+      - status
+      - published
+    fields:
+    - name: title
+      label: Title
+      type: string
+      required: true
+    - *id001
+    - name: status
+      label: Position Status
+      type: select
+      options:
+        values:
+        - Open
+        - Closed
+    - name: deadline
+      label: Application Deadline
+      type: date
+      default: ''
+      options:
+        format: yyyy-MM-dd
+    - name: link
+      label: Application URL
+      type: string
+    - *id003
+    - *id004
+- name: activity
+  label: News, Teaching & Recognition
+  type: group
+  items:
+  - name: news
+    label: News & Updates
+    type: collection
+    path: _news
+    format: yaml-frontmatter
+    filename: '{primary}.md'
+    view:
+      primary: title
+      fields:
+      - title
+      - date
+      - published
+    fields:
+    - name: title
+      label: Title
+      type: string
+      required: true
+    - *id001
+    - name: date
+      label: Announcement Date
+      type: date
+      options:
+        format: yyyy-MM-dd
+    - *id005
+    - *id003
+    - *id004
+  - name: teaching
+    label: Teaching
+    type: collection
+    path: _teaching
+    format: yaml-frontmatter
+    filename: '{primary}.md'
+    view:
+      primary: title
+      fields:
+      - title
+      - published
+    fields:
+    - name: title
+      label: Title
+      type: string
+      required: true
+    - name: semester
+      label: Term / Semester
+      type: string
+    - *id001
+    - *id002
+    - *id003
+    - *id004
+  - name: awards
+    label: Awards & Honors
+    type: collection
+    path: _awards
+    format: yaml-frontmatter
+    filename: '{primary}.md'
+    view:
+      primary: title
+      fields:
+      - title
+      - year
+      - published
+    fields:
+    - name: title
+      label: Title
+      type: string
+      required: true
+    - name: year
+      label: Award Year
+      type: number
+    - *id001
+    - name: link
+      label: Official Award URL
+      type: string
+    - *id003
+    - *id004
+  - name: talks
+    label: Talks & Media
+    type: collection
+    path: _talks
+    format: yaml-frontmatter
+    filename: '{primary}.md'
+    view:
+      primary: title
+      fields:
+      - title
+      - date
+      - published
+    fields:
+    - name: title
+      label: Title
+      type: string
+      required: true
+    - name: date
+      label: Presentation Date
+      type: date
+      default: ''
+      options:
+        format: yyyy-MM-dd
+    - *id001
+    - name: link
+      label: Recording or Event URL
+      type: string
+    - *id003
+    - *id004

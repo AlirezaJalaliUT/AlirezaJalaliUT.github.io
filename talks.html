@@ -1,0 +1,10 @@
+---
+layout: page
+title: Talks & Media
+description: Presentations, invited talks, interviews, and other public-facing research activities.
+eyebrow: 11 / OUTREACH
+number: "11"
+permalink: /talks/
+---
+{% assign talks = site.talks | where: 'published', true | sort: 'date' | reverse %}
+{% if talks.size > 0 %}<div class="timeline-list">{% for item in talks %}<a class="timeline-item" href="{{ item.url | relative_url }}"><time>{% if item.date %}{{ item.date | date: '%b %Y' }}{% endif %}</time><div><h2>{{ item.title | escape }}</h2><p>{{ item.summary | escape }}</p></div><span>↗</span></a>{% endfor %}</div>{% else %}{% include empty.html title="Talks and media coming soon" message="Approved presentation and media links can be added here." %}{% endif %}

@@ -1,0 +1,9 @@
+---
+layout: page
+title: Contact
+description: Contact the Water Treatment Laboratory at the University of Tehran.
+eyebrow: 12 / CONNECT
+number: "12"
+permalink: /contact/
+---
+<div class="contact-layout"><div><span class="kicker">GET IN TOUCH</span><h2>Let's connect around water research.</h2><p>{{ site.data.site.contact_note | escape }}</p><a class="btn btn-primary" href="mailto:{{ site.data.site.email | escape }}">Email the laboratory ↗</a></div><div class="contact-details"><div><span>EMAIL</span><a href="mailto:{{ site.data.site.email | escape }}">{{ site.data.site.email | escape }}</a></div><div><span>AFFILIATION</span><p>{{ site.data.site.department | escape }}<br>{{ site.data.site.college | escape }}<br>{{ site.data.site.university | escape }}<br>{{ site.data.site.city | escape }}</p></div><div><span>ACADEMIC LINKS</span><a href="{{ site.data.site.scholar_url }}" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a><br>{% if site.data.site.orcid_url != '' %}<a href="{{ site.data.site.orcid_url }}" target="_blank" rel="noopener noreferrer">ORCID ↗</a><br>{% endif %}<a href="{{ site.data.site.institution_url }}" target="_blank" rel="noopener noreferrer">University website ↗</a></div></div></div>

@@ -1,0 +1,10 @@
+---
+layout: page
+title: Alumni
+description: Celebrating past members of the Water Treatment Laboratory.
+eyebrow: 05 / OUR COMMUNITY
+number: "05"
+permalink: /alumni/
+---
+{% assign alumni = site.people | where: 'published', true | where: 'alumni', true | sort: 'order' %}
+{% if alumni.size > 0 %}<div class="team-grid">{% for item in alumni %}<a class="person-card" href="{{ item.url | relative_url }}"><div class="person-image">{% if item.photo and item.photo != '' %}<img src="{{ item.photo | relative_url }}" alt="Portrait of {{ item.title | escape }}" loading="lazy">{% else %}<span>{{ item.title | slice: 0, 1 | upcase }}</span>{% endif %}</div><div><h3>{{ item.title | escape }}</h3><p>{{ item.role | escape }}</p><span class="text-link">Profile ↗</span></div></a>{% endfor %}</div>{% else %}{% include empty.html title="Alumni profiles coming soon" message="Former lab members will be featured here after their information is confirmed." %}{% endif %}

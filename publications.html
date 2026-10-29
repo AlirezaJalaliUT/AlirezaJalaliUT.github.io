@@ -1,0 +1,12 @@
+---
+layout: page
+title: Publications
+description: Selected peer-reviewed work in water treatment engineering, numerical modeling, and desalination.
+eyebrow: 03 / OUR SCHOLARSHIP
+number: "03"
+permalink: /publications/
+---
+{% assign papers = site.publications | where: 'published', true | sort: 'year' | reverse %}
+<div class="publication-toolbar"><label class="search-box"><span aria-hidden="true">⌕</span><span class="sr-only">Search publications</span><input id="publication-search" type="search" placeholder="Search titles, authors, journals..." autocomplete="off"></label><label class="year-picker">Year <select id="publication-year"><option value="all">All years</option>{% assign years = papers | map: 'year' | uniq | sort | reverse %}{% for year in years %}<option value="{{ year }}">{{ year }}</option>{% endfor %}</select></label></div>
+{% if papers.size > 0 %}<p class="result-count" id="result-count" aria-live="polite">{{ papers.size }} selected publications</p><div class="pub-list" id="publication-list">{% for item in papers %}{% include publication-row.html item=item %}{% endfor %}</div><p class="filter-empty" id="filter-empty" hidden>No publications match those filters.</p>{% else %}{% include empty.html title="No publications published yet" %}{% endif %}
+<div class="publication-footnote"><p>This is a curated selection, not an automatically synchronized bibliography. For the full and current list, consult the scholar profile.</p><a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="{{ site.data.site.scholar_url }}">Complete list on Google Scholar ↗</a></div>

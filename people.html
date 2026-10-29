@@ -1,0 +1,12 @@
+---
+layout: page
+title: Our Team
+description: Meet the students and researchers contributing to the laboratory's work.
+eyebrow: 04 / THE PEOPLE
+number: "04"
+permalink: /people/
+---
+<div class="pi-feature"><div class="pi-portrait">{% if site.data.site.professor_photo != '' %}<img src="{{ site.data.site.professor_photo | relative_url }}" alt="Portrait of {{ site.data.site.professor_name | escape }}">{% else %}<img src="{{ '/assets/img/portrait-placeholder.svg' | relative_url }}" alt="Portrait placeholder">{% endif %}</div><div><span class="micro-heading">PRINCIPAL INVESTIGATOR</span><h2>{{ site.data.site.professor_name | escape }}</h2><p>{{ site.data.site.professor_title | escape }} · {{ site.data.site.department | escape }}, {{ site.data.site.university | escape }}</p><a class="text-link" href="{{ '/about/' | relative_url }}">About the professor ↗</a></div></div>
+{% assign members = site.people | where: 'published', true | where: 'alumni', false | sort: 'order' %}
+<div class="section-heading small-heading"><div><span class="kicker">RESEARCH COMMUNITY</span><h2>Lab members</h2></div></div>
+{% if members.size > 0 %}<div class="team-grid">{% for item in members %}<a class="person-card" href="{{ item.url | relative_url }}"><div class="person-image">{% if item.photo and item.photo != '' %}<img src="{{ item.photo | relative_url }}" alt="Portrait of {{ item.title | escape }}" loading="lazy">{% else %}<span>{{ item.title | slice: 0, 1 | upcase }}</span>{% endif %}</div><div><h3>{{ item.title | escape }}</h3><p>{{ item.role | escape }}</p><span class="text-link">View profile ↗</span></div></a>{% endfor %}</div>{% else %}{% include empty.html title="Member profiles will be added soon" message="Names, photos, and roles will be shown once the laboratory approves them for publication." %}{% endif %}
