@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<article class="detail-page"><div class="container detail-container"><div class="detail-back"><a href="{{ '/' | relative_url }}">← Back</a></div>
+ <span class="kicker">{{ page.collection | replace: '_', ' ' | upcase | escape }}</span>
+ <h1>{{ page.title | escape }}</h1>
+ {% if page.role %}<p class="detail-subtitle">{{ page.role | escape }}</p>{% endif %}
+ {% if page.summary %}<p class="detail-lead">{{ page.summary | escape }}</p>{% endif %}
+ {% if page.authors %}<p class="detail-metadata">{{ page.authors | escape }}{% if page.venue %} · {{ page.venue | escape }}{% endif %}{% if page.year %} · {{ page.year }}{% endif %}</p>{% endif %}
+ {% if page.photo and page.photo != '' %}<img class="detail-photo" src="{{ page.photo | relative_url }}" alt="Photo of {{ page.title | escape }}">{% endif %}
+ {% if content != '' %}<div class="prose">{{ content }}</div>{% endif %}
+ <div class="detail-actions">{% if page.link and page.link != '' %}<a class="btn btn-primary" href="{{ page.link }}" target="_blank" rel="noopener noreferrer">External link ↗</a>{% endif %}{% if page.doi and page.doi != '' %}<a class="btn btn-outline" href="https://doi.org/{{ page.doi | escape }}" target="_blank" rel="noopener noreferrer">Read paper ↗</a>{% endif %}{% if page.email and page.email != '' %}<a class="btn btn-outline" href="mailto:{{ page.email | escape }}">Email ↗</a>{% endif %}</div>
+</div></article>

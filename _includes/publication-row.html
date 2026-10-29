@@ -1,0 +1,6 @@
+{% assign pub = include.item %}
+<article class="publication-row" data-year="{{ pub.year }}" data-search="{{ pub.title | downcase | escape }} {{ pub.authors | downcase | escape }} {{ pub.venue | downcase | escape }}">
+ <div class="pub-year">{{ pub.year }}</div><div class="pub-main"><div class="pub-tag">{{ pub.category | default: 'Journal article' | escape }}</div>
+ <h3><a href="{{ pub.url | relative_url }}">{{ pub.title | escape }}</a></h3><p class="pub-authors">{{ pub.authors | escape }}</p><p class="pub-venue">{{ pub.venue | escape }}</p></div>
+ <div class="pub-action">{% if pub.doi and pub.doi != '' %}<a href="https://doi.org/{{ pub.doi | escape }}" target="_blank" rel="noopener noreferrer" aria-label="Open publication DOI">↗</a>{% elsif pub.link and pub.link != '' %}<a href="{{ pub.link }}" target="_blank" rel="noopener noreferrer" aria-label="Open publication">↗</a>{% endif %}</div>
+</article>

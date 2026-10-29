@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="color-scheme" content="light">
+ <meta name="theme-color" content="#0d3659">
+ <meta name="description" content="{% if page.description %}{{ page.description | strip_html | escape }}{% else %}{{ site.description | escape }}{% endif %}">
+ <title>{% if page.title and page.title != 'Home' %}{{ page.title | escape }} · {% endif %}{{ site.data.site.lab_name | escape }} | {{ site.data.site.university | escape }}</title>
+ <link rel="icon" href="{{ '/assets/img/favicon.svg' | relative_url }}" type="image/svg+xml">
+ <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+ {% if site.url and site.url != '' %}<link rel="canonical" href="{{ page.url | absolute_url }}">{% endif %}
+ <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" id="top">
+ <div class="container header-inner">
+   <a class="brand" href="{{ '/' | relative_url }}" aria-label="{{ site.data.site.lab_name | escape }} home">
+     <span class="brand-mark" aria-hidden="true"><svg width="26" height="31" viewBox="0 0 26 31" fill="none"><path d="M13 2C10.5 8 4 13.4 4 19.2A9 9 0 0 0 22 19.2C22 13.4 15.5 8 13 2Z" stroke="currentColor" stroke-width="1.7"/><path d="M6 20c3.2-3.4 5.7-2.7 7.4-.6 2.4 2.4 4.6 2.5 6.8.4" stroke="currentColor" stroke-width="1.7"/></svg></span>
+     <span class="brand-words"><strong>{{ site.data.site.lab_name | escape }}</strong><small>{{ site.data.site.university | escape }}</small></span>
+   </a>
+   <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
+   <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+     <a href="{{ '/research/' | relative_url }}" {% if page.url == '/research/' %}aria-current="page"{% endif %}>Research</a>
+     <a href="{{ '/projects/' | relative_url }}" {% if page.url == '/projects/' %}aria-current="page"{% endif %}>Projects</a>
+     <a href="{{ '/publications/' | relative_url }}" {% if page.url == '/publications/' %}aria-current="page"{% endif %}>Publications</a>
+     <a href="{{ '/people/' | relative_url }}" {% if page.url == '/people/' %}aria-current="page"{% endif %}>People</a>
+     <a href="{{ '/positions/' | relative_url }}" {% if page.url == '/positions/' %}aria-current="page"{% endif %}>Opportunities</a>
+     <a href="{{ '/news/' | relative_url }}" {% if page.url == '/news/' %}aria-current="page"{% endif %}>News</a>
+     <div class="nav-more"><button type="button" class="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span aria-hidden="true">⌄</span></button>
+       <div class="more-menu" id="more-menu">
+        <a href="{{ '/about/' | relative_url }}">About the Professor</a><a href="{{ '/alumni/' | relative_url }}">Alumni</a><a href="{{ '/teaching/' | relative_url }}">Teaching</a><a href="{{ '/awards/' | relative_url }}">Awards &amp; Honors</a><a href="{{ '/talks/' | relative_url }}">Talks &amp; Media</a>
+       </div>
+     </div>
+     <a href="{{ '/contact/' | relative_url }}" class="nav-contact">Contact <span aria-hidden="true">↗</span></a>
+   </nav>
+ </div>
+</header>
+<main id="main">{{ content }}</main>
+<footer class="site-footer"><div class="container footer-content">
+ <div class="footer-top"><div><div class="footer-lab-name">{{ site.data.site.lab_name | escape }}</div><p>{{ site.data.site.footer_note | escape }}</p></div><div class="footer-links"><a href="{{ '/research/' | relative_url }}">Research</a><a href="{{ '/publications/' | relative_url }}">Publications</a><a href="{{ '/people/' | relative_url }}">People</a><a href="{{ '/contact/' | relative_url }}">Contact</a></div></div>
+ <div class="footer-bottom"><span>© {{ 'now' | date: '%Y' }} {{ site.data.site.lab_name | escape }} · {{ site.data.site.university | escape }}</span><div class="footer-socials"><a href="{{ site.data.site.scholar_url }}" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a>{% if site.data.site.orcid_url != '' %}<a href="{{ site.data.site.orcid_url }}" target="_blank" rel="noopener noreferrer">ORCID ↗</a>{% endif %}</div><a href="#top">Back to top ↑</a></div>
+</div></footer>
+</body>
+</html>
